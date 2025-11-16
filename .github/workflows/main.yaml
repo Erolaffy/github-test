@@ -16,3 +16,5 @@ jobs:
       # 步骤1：打印 "Hello, world!"
       - name: Say hello
         run: echo "Hello, world!"
+      - name: print secret
+        run: echo ${{ secrets.SECRET_NAME }}
