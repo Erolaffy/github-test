@@ -1,20 +1,25 @@
-# 工作流程的名称
-name: Hello World Workflow
+name: Deploy via SSH
 
-# 触发工作流程的事件
-on: [push]
+on:
+  push:
+    branches:
+      - main  # 监听 main 分支的 push 事件
 
-# 定义工作流程中的任务
 jobs:
-  # 任务的ID
-  hello_world_job:
-    # 任务运行的虚拟环境
+  deploy:
     runs-on: ubuntu-latest
-
-    # 任务中的步骤
     steps:
-      # 步骤1：打印 "Hello, world!"
-      - name: Say hello
-        run: echo "Hello, world!"
-      - name: print secret
-        run: echo "${{ secrets.FIRST_SECRET }}"
+      - name: Deploy to Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            # 注意：请务必将下面的路径修改为您网站在服务器上的真实路径！
+            cd /opt/
+            ls
+            # 您还可以在这里添加其他命令，例如：
+            # npm install
+            # npm run build
+            # systemctl restart your-service
