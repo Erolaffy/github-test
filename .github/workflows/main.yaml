@@ -17,4 +17,4 @@ jobs:
       - name: Say hello
         run: echo "Hello, world!"
       - name: print secret
-        run: echo ${{ secrets.SECRET_NAME }}
+        run: echo "${{ secrets.FIRST_SECRET }}"
