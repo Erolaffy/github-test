@@ -1,0 +1,18 @@
+# 工作流程的名称
+name: Hello World Workflow
+
+# 触发工作流程的事件
+on: [push]
+
+# 定义工作流程中的任务
+jobs:
+  # 任务的ID
+  hello_world_job:
+    # 任务运行的虚拟环境
+    runs-on: ubuntu-latest
+
+    # 任务中的步骤
+    steps:
+      # 步骤1：打印 "Hello, world!"
+      - name: Say hello
+        run: echo "Hello, world!"
